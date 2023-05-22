@@ -5,9 +5,7 @@
 
 
 
-												   /////////////////
 ///////////////////////////////////////////////////// BIBLIOTECAS /////////////////////////////////////////////////////
-												   /////////////////
 
 #include <stdio.h> // Bilioteca padrao
 #include <conio.h> // Biblioteca para captar os botoes do teclado
@@ -19,9 +17,7 @@
 
 
 
-												//////////////////////
 ////////////////////////////////////////////////// IMPRIME A MATRIZ ///////////////////////////////////////////////////
-												//////////////////////
 
 void printMatriz(int matriz[linha][coluna]) {
 	int i, j;
@@ -41,9 +37,7 @@ void printMatriz(int matriz[linha][coluna]) {
 
 
 
-												 //////////////////
 /////////////////////////////////////////////////// LIMPA A TELA //////////////////////////////////////////////////////
-												 //////////////////
 
 void limpaTela() {
     #ifdef _WIN32
@@ -55,36 +49,34 @@ void limpaTela() {
 
 
 
-											   ///////////////////////
 ///////////////////////////////////////////////// SORTEIO DA MATRIZ //////////////////////////////////////////////////
-											   ///////////////////////
 
 void sorteiaMatriz(int matriz[linha][coluna], int *linha_vazia, int *coluna_vazia, int dificuldade) {
 	int i, j;
-    int aleatorio, auxiliar, num_embaralhamento, contador;
+    	int aleatorio, auxiliar, num_embaralhamento, contador;
 	int ultimo_X, ultimo_Y;
 
 	srand(time(NULL));
     
-    switch (dificuldade) {
-        case 1:
-            num_embaralhamento = 25; //Nível fácil
-            break;
-        case 2: 
-            num_embaralhamento = 50; //Nível médio
-            break;
-        case 3:
-            num_embaralhamento = 75; //Nível díficil
-            break;
-        default:
-            num_embaralhamento = 1; //Por padrao nao embaralha (precisa escolher uma dificuldade)
-            printf("Escolha uma dificuldade!");
-            break;
-    }
+    	switch (dificuldade) {
+		case 1:
+		    num_embaralhamento = 25; //Nível fácil
+		    break;
+		case 2: 
+		    num_embaralhamento = 50; //Nível médio
+		    break;
+		case 3:
+		    num_embaralhamento = 75; //Nível díficil
+		    break;
+		default:
+		    num_embaralhamento = 1; //Por padrao nao embaralha (precisa escolher uma dificuldade)
+		    printf("Escolha uma dificuldade!");
+		    break;
+	    }
 
-    for (contador = 0; contador < num_embaralhamento; contador++) {
-        aleatorio = rand() % 4;
-        switch (aleatorio) {
+    	for (contador = 0; contador < num_embaralhamento; contador++) {
+		aleatorio = rand() % 4;
+		switch (aleatorio) {
 			case 0: // W
 				if (i == ultimo_X && j == ultimo_Y) { // Checa se o zero esta voltando para a ultima posicao para garantir a dificuldade
 					contador--;
@@ -138,7 +130,7 @@ void sorteiaMatriz(int matriz[linha][coluna], int *linha_vazia, int *coluna_vazi
         matriz[*linha_vazia][*coluna_vazia] = auxiliar;
         *linha_vazia = i;
         *coluna_vazia = j;
-		printMatriz(matriz);
+	printMatriz(matriz);
         limpaTela(); // Limpa a tela durante o embaralhamento para causar sensação de movimento
     }
 }
@@ -151,15 +143,15 @@ void sorteiaMatriz(int matriz[linha][coluna], int *linha_vazia, int *coluna_vazi
 
 int movimentaMatriz (int matriz[linha][coluna], char movimento) {
 	int i, j, x, y;
-    for (i = 0; i < linha; i++) {
-        for (j = 0; j < coluna; j++) {
-            if (matriz[i][j] == 0) { // Acha onde está localizado o 0 na matriz embaralhada
-                x = i;
-                y = j;
-                break;
-            }
-        }
-    }
+    	for (i = 0; i < linha; i++) {
+		for (j = 0; j < coluna; j++) {
+	    		if (matriz[i][j] == 0) { // Acha onde está localizado o 0 na matriz embaralhada
+				x = i;
+				y = j;
+			break;
+	   		}
+		}
+    	}
 
 	switch (movimento) {
 		case 'w': 
@@ -198,17 +190,15 @@ int movimentaMatriz (int matriz[linha][coluna], char movimento) {
 
 
 
-               								   ////////////////////////
-///////////////////////////////////////////////// VERIFICA SE GANHOU /////////////////////////////////////////////////
-											   ////////////////////////
+///////////////////////////////////////////////// VERIFICA SE GANHOU /////////////////////////////////////////////////									
 
 int verificaMatriz(int matriz[linha][coluna]) {
 	// Verifica se o jogador ganhou
 	int i, j;
 	int matriz_solucao[4][4] = {{ 1,  2,  3,  4},
-								{ 5,  6,  7,  8},
-								{ 9, 10, 11, 12},
-								{13, 14, 15,  0}};
+				    { 5,  6,  7,  8},
+				    { 9, 10, 11, 12},
+				    {13, 14, 15,  0}};
 	
 	for (i = 0; i < 4; i++){
 		for (j = 0; j < 4; j++){
@@ -222,15 +212,13 @@ int verificaMatriz(int matriz[linha][coluna]) {
 
 
 
-												//////////////////////
 ////////////////////////////////////////////////// FUNCAO PRINCIPAL //////////////////////////////////////////////////
-												//////////////////////
 
 int main() {
 	int matriz[linha][coluna] = {{ 1,  2,  3,  4},
-								 { 5,  6,  7,  8},
-								 { 9, 10, 11, 12},
-								 {13, 14, 15,  0}};
+				     { 5,  6,  7,  8},
+				     { 9, 10, 11, 12},
+				     {13, 14, 15,  0}};
 
 	int dificuldade;
 	int linha_vazia = 3, coluna_vazia = 3; // Posicao inicial do zero
@@ -239,19 +227,17 @@ int main() {
 	
 
 	printf("Ola, seja bem vindo ao jogo dos 15! Irei explicar as regras do jogo: \n\n");
-
-    printf("- O jogo ira comecar com o quadro a seguir, decore-o: \n");
-    printMatriz(matriz);
-    printf("- Apos escolher uma dificuldade, o quadro sera embaralhado e o seu objetivo e voltar ao quadro original... \n");
+	printf("- O jogo ira comecar com o quadro a seguir, decore-o: \n");
+	printMatriz(matriz);
+	printf("- Apos escolher uma dificuldade, o quadro sera embaralhado e o seu objetivo e voltar ao quadro original... \n");
 	printf("- Os numeros devem ficar em ordem crescente e voce ira mover a casa em vermelho, boa sorte!\n\n");
-
 	printf("Para comecarmos, digite um numero de 1 a 3 para escolher a dificuldade: \n");
 	printf("1 - Facil \n2 - Medio \n3 - Dificil \n");
 	scanf("%d", &dificuldade);
 	sorteiaMatriz(matriz, &linha_vazia, &coluna_vazia, dificuldade);
 
-    limpaTela();
-    printMatriz(matriz);
+    	limpaTela();
+    	printMatriz(matriz);
 
 	// Enquanto nao fechar, jogue o jogo
 	int fechar = 0;
